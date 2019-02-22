@@ -247,7 +247,8 @@ ol li {
 
 /* Display for each item and remove button for each item. */
 li.listItem {
-  width: 600px;
+   max-width: 600px;
+   min-width: 300px;
   text-transform: capitalize;
   /*Support for older browsers that don't support RGBA*/
   background-color: rgb(77, 210, 255);
