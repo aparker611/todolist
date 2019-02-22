@@ -246,8 +246,9 @@ ol li {
 }
 
 /* Display for each item and remove button for each item. */
-.item {
-  width: 90%;
+li.listItem {
+  width: 600px;
+  text-transform: capitalize;
   /*Support for older browsers that don't support RGBA*/
   background-color: rgb(77, 210, 255);
   background-color: rgba(77, 210, 255, 1);
@@ -264,11 +265,19 @@ ol li {
 
 }
 
+li.done,
+button.done {
+  /*Support for older browsers that don't support RGBA*/
+  background-color: rgb(47, 181, 60);
+  background-color: rgba(47, 181, 60, 1);
+}
+
 .item-name {
   display: inline-block;
   margin-top: 10px;
-  font-size: 19px;
-  line-height: 24px;
+  font-size: 23px;
+  font-family: sans-serif;
+  line-height: 28px;
 }
 
 .remove {
