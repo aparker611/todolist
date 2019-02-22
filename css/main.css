@@ -115,7 +115,8 @@ body {
   background:         linear-gradient(#87ceeb, #293f50);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   align-self: center;
@@ -200,7 +201,7 @@ ol li {
   box-shadow: 6px 6px 22px 1px rgba(0,0,0,0.75);
   width: auto;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 30px auto;
   padding: 20px 20px;
   border-radius: 25px;
   font-family: "Open Sans", sans-serif;
@@ -247,8 +248,7 @@ ol li {
 
 /* Display for each item and remove button for each item. */
 li.listItem {
-   max-width: 600px;
-   min-width: 300px;
+  width: 600px;
   text-transform: capitalize;
   /*Support for older browsers that don't support RGBA*/
   background-color: rgb(77, 210, 255);
