@@ -1,9 +1,9 @@
 $(document).ready(function() {
-  var $submit = $('.submit');
-  var $input  = $('.additem')[0];
-  var $ul     = $('.item-list');
-  var $done   = false;
-  var i = 0;
+  var  $submit = $('.submit'),
+       $input  = $('.additem')[0],
+       $ul     = $('.item-list'),
+       $done   = false,
+       i       = 0;
 
 
 if(typeof(Storage) !== "undefined") {
@@ -12,7 +12,6 @@ if(typeof(Storage) !== "undefined") {
 } else {
  console.log("Failed to access storage")
 }
-
 // when you click the submit button it checks that the length is not longer than 28
 // it then calls the addListItem function if it is okay.
 $submit.click(function( e ) {
@@ -26,7 +25,7 @@ $submit.click(function( e ) {
     return false;
   }
 });
-// after making sure the
+
   function addListItem() {
     localStorage.setItem("item-"+i, $input.value);
     var $li = "<li class='listItem"+ " item-"+i  +"'>" +
@@ -38,26 +37,21 @@ $submit.click(function( e ) {
   localStorage.setItem("item-"+i, $li);
   return false;
 }
-
 $(document).on("click", ".listItem", function() {
+var item = $(this).attr('class').split(' ')[1];
+var $li = $(this);
   if($done) {
-    var item = $(this).attr('class').split(' ')[1];
     $(this).find("button").removeClass("done");
     $(this).removeClass("done");
-    var $li = $(this);
     localStorage.setItem(item, $li[0].outerHTML);
-
     $done = false;
   } else {
-    var item = $(this).attr('class').split(' ')[1];
     $(this).find("button").addClass("done");
     $(this).addClass("done");
-    var $li = $(this);
     localStorage.setItem(item, $li[0].outerHTML)
     $done = true;
   }
 });
-
 $(document).on("click", ".remove", function() {
   var obj = $(this).parents();
   var item = obj[0].classList[1];
