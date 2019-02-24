@@ -5,12 +5,10 @@ $(document).ready(function() {
   var $done   = false;
   var i = 0;
 
+
 if(typeof(Storage) !== "undefined") {
   for ( i = 0; i < localStorage.length; i++)
-    $($ul).append("<li class='listItem"+ " item-"+i  +"'>" +
-              "<p class='item-name'>"+localStorage.getItem("item-"+i)+"</p>" +
-              "<button class='remove'></button>" +
-              "</li>");
+              $($ul).append(localStorage.getItem("item-"+i));
 } else {
  console.log("Failed to access storage")
 }
@@ -37,33 +35,35 @@ $submit.click(function( e ) {
               "</li>";
   $ul.append($li);
   $input.value = "";
+  localStorage.setItem("item-"+i, $li);
   return false;
 }
 
 $(document).on("click", ".listItem", function() {
   if($done) {
+    var item = $(this).attr('class').split(' ')[1];
     $(this).find("button").removeClass("done");
     $(this).removeClass("done");
     var $li = $(this);
-    localStorage.setItem("item-"+i, $li)
+    localStorage.setItem(item, $li[0].outerHTML);
 
     $done = false;
   } else {
+    var item = $(this).attr('class').split(' ')[1];
     $(this).find("button").addClass("done");
     $(this).addClass("done");
     var $li = $(this);
-    localStorage.setItem("item-"+i, $li)
-
+    localStorage.setItem(item, $li[0].outerHTML)
     $done = true;
   }
 });
 
 $(document).on("click", ".remove", function() {
+  var obj = $(this).parents();
+  var item = obj[0].classList[1];
   $(this).parents("li").remove();
-  var obj = $(this).attr('class').split(' ')[1];
-  console.log(obj);
-  localStorage.removeItem(obj);
-  console.log(obj);
+    localStorage.removeItem(item);
+    return false;
 });
 
 });
