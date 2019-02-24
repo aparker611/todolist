@@ -5,7 +5,6 @@ $(document).ready(function() {
        $done   = false,
        i       = 0;
 
-
 if(typeof(Storage) !== "undefined") {
   for ( i = 0; i < localStorage.length; i++)
               $($ul).append(localStorage.getItem("item-"+i));
@@ -22,19 +21,20 @@ $submit.click(function( e ) {
     return false;
   } else {
     addListItem();
-    return false;
   }
 });
 
   function addListItem() {
     localStorage.setItem("item-"+i, $input.value);
     var $li = "<li class='listItem"+ " item-"+i  +"'>" +
-              "<p class='item-name'>"+localStorage.getItem("item-"+i)+"</p>" +
+              "<p class='item-name'>"+$input.value+"</p>" +
               "<button class='remove'></button>" +
               "</li>";
   $ul.append($li);
   $input.value = "";
   localStorage.setItem("item-"+i, $li);
+  localStorage.getItem("item-"+i);
+  i++;
   return false;
 }
 $(document).on("click", ".listItem", function() {
